@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 public class MainFrame extends JFrame
@@ -16,34 +17,30 @@ public class MainFrame extends JFrame
     private ArrayList<Figure> list = new ArrayList<Figure>();
     private Figure current;
 
-    private JMenuItem openItem;
-    private JMenuItem saveItem;
     private JMenuItem exitItem;
 
-    private JMenuItem helpItem;
-
-    private JMenuItem EditItem;
-    private JMenuItem ColorItem;
-    private JMenuItem ColorItem1;
+    private JMenuItem move;
+    private JMenuItem lineColorItem;
+    private JMenuItem fillColorItem;
 
     private JMenuItem segment;
-    private JMenuItem beam;
+    private JMenuItem ray;
     private JMenuItem line;
 
     private JMenuItem poligon;
     private JMenuItem regular;
     private JMenuItem rect;
     private JMenuItem rhomb;
-    private JMenuItem oval;
+    private JMenuItem ellipse;
 
     private JMenuItem square;
     private JMenuItem triangle;
 
     private JMenuItem Clear;
     private JFileChooser fc;
-    // __________________________________________________
-    private Color selectedColor = Color.BLUE;
-    private Color selectedColor1 = Color.GREEN;
+
+    private Color lineColor = Color.BLUE;
+    private Color fillColor = Color.GREEN;
 
     ShapePanel tp;
     static int q = 0;
@@ -86,7 +83,6 @@ public class MainFrame extends JFrame
         JMenu PaintMenu1D = new JMenu("Paint1D");
         JMenu PaintMenu2D = new JMenu("Paint2D");
         JMenu regular = new JMenu("RegularFigure");
-        JMenu helpMenu = new JMenu("Help");
 
         menuBar.add(fileMenu);
 
@@ -94,30 +90,24 @@ public class MainFrame extends JFrame
         menuBar.add(PaintMenu1D);
         menuBar.add(PaintMenu2D);
 
-        menuBar.add(helpMenu);
-
         createItems();
-        // fileMenu.add(openItem);
-        // fileMenu.add(saveItem);
-        // fileMenu.addSeparator();
+
         fileMenu.add(exitItem);
 
-        helpMenu.add(helpItem);
-
-        EditMenu.add(EditItem);
-        EditMenu.add(ColorItem);
-        EditMenu.add(ColorItem1);
+        EditMenu.add(move);
+        EditMenu.add(lineColorItem);
+        EditMenu.add(fillColorItem);
         EditMenu.add(Clear);
 
         PaintMenu1D.add(segment);
-        PaintMenu1D.add(beam);
+        PaintMenu1D.add(ray);
         PaintMenu1D.add(line);
 
         PaintMenu2D.add(poligon);
         PaintMenu2D.add(regular);
         PaintMenu2D.add(rect);
         PaintMenu2D.add(rhomb);
-        PaintMenu2D.add(oval);
+        PaintMenu2D.add(ellipse);
 
         regular.add(triangle);
         regular.add(square);
@@ -128,26 +118,22 @@ public class MainFrame extends JFrame
     {
 
         DemoAction lDemoAction = new DemoAction();
-        openItem.addActionListener(lDemoAction);
-        saveItem.addActionListener(lDemoAction);
         exitItem.addActionListener(lDemoAction);
 
-        helpItem.addActionListener(lDemoAction);
-
-        EditItem.addActionListener(lDemoAction);
-        ColorItem.addActionListener(lDemoAction);
-        ColorItem1.addActionListener(lDemoAction);
+        move.addActionListener(lDemoAction);
+        lineColorItem.addActionListener(lDemoAction);
+        fillColorItem.addActionListener(lDemoAction);
         Clear.addActionListener(lDemoAction);
 
         segment.addActionListener(lDemoAction);
-        beam.addActionListener(lDemoAction);
+        ray.addActionListener(lDemoAction);
         line.addActionListener(lDemoAction);
 
         poligon.addActionListener(lDemoAction);
         regular.addActionListener(lDemoAction);
         rect.addActionListener(lDemoAction);
         rhomb.addActionListener(lDemoAction);
-        oval.addActionListener(lDemoAction);
+        ellipse.addActionListener(lDemoAction);
 
         triangle.addActionListener(lDemoAction);
         square.addActionListener(lDemoAction);
@@ -156,30 +142,25 @@ public class MainFrame extends JFrame
 
     private void createItems()
     {
-
-        openItem = new JMenuItem("Open...");
-        saveItem = new JMenuItem("Save as...");
         exitItem = new JMenuItem("Exit");
 
-        helpItem = new JMenuItem("About");
-
-        EditItem = new JMenuItem("Move Figure");
-        ColorItem = new JMenuItem("Color of borders");
-        ColorItem1 = new JMenuItem("Color of fill");
+        move = new JMenuItem("Move Figure");
+        lineColorItem = new JMenuItem("Color of borders");
+        fillColorItem = new JMenuItem("Color of fill");
         Clear = new JMenuItem("Clear All");
 
         segment = new JMenuItem("Segment");
-        beam = new JMenuItem("Beam");
+        ray = new JMenuItem("Ray");
         line = new JMenuItem("Line");
 
-        poligon = new JMenuItem("Poligon");
+        poligon = new JMenuItem("Polygon");
         regular = new JMenuItem("Regular Figure");
         rect = new JMenuItem("Rectangle");
         rhomb = new JMenuItem("Rhombus");
-        oval = new JMenuItem("Oval");
+        ellipse = new JMenuItem("Ellipse");
 
-        square = new JMenuItem("Square");
-        triangle = new JMenuItem("Triangle");
+        square = new JMenuItem("4 sides");
+        triangle = new JMenuItem("3 sides");
 
     }
 
@@ -196,48 +177,114 @@ public class MainFrame extends JFrame
     {
         public void actionPerformed(ActionEvent event)
         {
-            Object object = event.getSource();
-            if (object == exitItem)
-                exitItem_Action(event);
-            // else if (object == openItem)
-            // openItem_Action(event);
+            List<Point> points = tp.getPoints();
 
-            else if (object == helpItem)
-                helpItem_Action(event);
-            else if (object == EditItem)
-                EditItem_Action(event);
-            else if (object == ColorItem)
-                ColorItem_Action(event);
-            else if (object == ColorItem1)
-                ColorItem1_Action(event);
-            else if (object == segment)
-                segmentItem_Action(event);
-            else if (object == beam)
-                beamItem_Action(event);
-            else if (object == line)
-                lineItem_Action(event);
-            else if (object == poligon)
-                poligonItem_Action(event);
-            else if (object == oval)
-                ovalItem_Action(event);
-            else if (object == rect)
-                rectItem_Action(event);
-            else if (object == rhomb)
-                rhombItem_Action(event);
-            else if (object == square)
+            if (event.getSource() == exitItem)
+            {
+                System.exit(0);
+            }
+            if (event.getSource() == move)
+            {
+                if(validateAction(1))
+                {
+                    current.move(points.get(0));
+                }
+            }
+            if (event.getSource() == lineColorItem)
+            {
+                lineColor = getColor();
+            }
+            if (event.getSource() == fillColorItem)
+            {
+                fillColor = getColor();
+            }
+            if (event.getSource() == segment)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Segment(points.get(0), lineColor, points.get(1));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == ray)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Ray(points.get(0), lineColor, points.get(1));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == line)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Line(points.get(0), lineColor, points.get(1));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == poligon)
+            {
+                if(validateAction(3))
+                {
+                    Figure c = new Polygon(points.get(0), lineColor, fillColor,
+                            points.toArray(new Point[points.size()]));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == ellipse)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Ellipse(points.get(0), lineColor, fillColor,
+                            points.toArray(new Point[points.size()]));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == rect)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Rectangle(points.get(0), lineColor, fillColor,
+                            points.toArray(new Point[points.size()]));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == rhomb)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Rhombus(points.get(0), lineColor, fillColor,
+                            points.toArray(new Point[points.size()]));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            else if (event.getSource() == square)
                 squareItem_Action(event);
-            else if (object == triangle)
+            else if (event.getSource() == triangle)
                 triangleItem_Action(event);
-            else if (object == Clear)
+            else if (event.getSource() == Clear)
                 ClearItem_Action(event);
+
+            repaintAndClear(points);
 
         }
 
     }
 
+    private Color getColor()
+    {
+        return JColorChooser.showDialog(this, "Choose color", Color.green);
+    }
+
     private void clearLists()
     {
-
         list.clear();
     }
 
@@ -249,190 +296,32 @@ public class MainFrame extends JFrame
         return returnVal;
     }
 
-    private void ColorItem_Action(ActionEvent event)
+    private void repaintAndClear(List<Point> points)
     {
-        selectedColor = JColorChooser.showDialog(this, "Choose color", Color.blue);
-
-        System.out.println(selectedColor);
+        this.repaint();
+        points.clear();
     }
 
-    private void ColorItem1_Action(ActionEvent event)
+    private boolean validateAction(int numberNeeded)
     {
-        selectedColor1 = JColorChooser.showDialog(this, "Choose color", Color.green);
-
-        System.out.println(selectedColor);
-    }
-
-    private void exitItem_Action(ActionEvent event)
-    {
-        System.exit(0);
-    }
-
-    private void helpItem_Action(ActionEvent event)
-    {
-        JOptionPane.showMessageDialog(null, "Luka Chepukhin,2014");
-    }
-
-    private void EditItem_Action(ActionEvent event)
-    {
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
+        if ((tp.getPoints()).size() >= numberNeeded)
         {
-            current.move(points.get(0));
-            this.repaint();
-            points.clear();
-
+            return true;
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
+            JOptionPane.showMessageDialog(null, "need points: " + numberNeeded);
+            return false;
         }
-    }
-
-    private void segmentItem_Action(ActionEvent event)
-    {
-
-        ArrayList<Point> points = tp.getPoints();
-
-        if (points.size() >= 2)
-        {
-            Figure c = new Segment(points.get(0), selectedColor, points.get(1));
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
-        }
-
-    }
-
-    private void beamItem_Action(ActionEvent event)
-    {
-
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
-        {
-            Figure c = new Beam(points.get(0), selectedColor, points.get(1));
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
-        }
-
-    }
-
-    private void lineItem_Action(ActionEvent event)
-    {
-
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
-        {
-            Figure c = new Line(points.get(0), selectedColor, points.get(1));
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
-        }
-
-    }
-
-    private void poligonItem_Action(ActionEvent event)
-    {
-
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
-        {
-            Figure c = new Poligon(points.get(0), selectedColor, selectedColor1,
-                    points.toArray(new Point[points.size()]));
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
-        }
-
-    }
-
-    private void rectItem_Action(ActionEvent event)
-    {
-
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
-        {
-            Figure c = new Rectangle(points.get(0), selectedColor, selectedColor1, points.toArray(new Point[points
-                    .size()]));
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
-        }
-
-    }
-
-    private void ovalItem_Action(ActionEvent event)
-    {
-
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
-        {
-            Figure c = new Oval(points.get(0), selectedColor, selectedColor1, points.toArray(new Point[points.size()]));
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
-        }
-
-    }
-
-    private void rhombItem_Action(ActionEvent event)
-    {
-
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
-        {
-            Figure c = new Rhombus(points.get(0), selectedColor, selectedColor1,
-                    points.toArray(new Point[points.size()]));
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
-        }
-
     }
 
     private void squareItem_Action(ActionEvent event)
     {
 
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
+        List<Point> points = tp.getPoints();
+        if (points.size() > 0)
         {
-            Figure c = new Square(points.get(1), selectedColor, selectedColor1, points.get(0));
+            Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),4);
             current = c;
             list.add(c);
             this.repaint();
@@ -440,7 +329,7 @@ public class MainFrame extends JFrame
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
+            JOptionPane.showMessageDialog(null, "place one point, please");
         }
 
     }
@@ -448,10 +337,10 @@ public class MainFrame extends JFrame
     private void triangleItem_Action(ActionEvent event)
     {
 
-        ArrayList<Point> points = tp.getPoints();
-        if (points.size() >= 2)
+        List<Point> points = tp.getPoints();
+        if (points.size() > 0)
         {
-            Figure c = new Triangle(points.get(1), selectedColor, selectedColor1, points.get(0));
+            Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),3);
             current = c;
             list.add(c);
             this.repaint();
@@ -459,7 +348,7 @@ public class MainFrame extends JFrame
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Недостаточно точек");
+            JOptionPane.showMessageDialog(null, "place one point, please");
         }
 
     }
@@ -506,7 +395,7 @@ public class MainFrame extends JFrame
 class ShapePanel extends JPanel
 {
     private ArrayList<Figure> AL;
-    private ArrayList<Point> points = new ArrayList<Point>();
+    private List<Point> points = new ArrayList<Point>();
 
     public ShapePanel(ArrayList<Figure> al)
     {
@@ -542,7 +431,7 @@ class ShapePanel extends JPanel
 
     }
 
-    public ArrayList<Point> getPoints()
+    public List<Point> getPoints()
     {
         return points;
     }

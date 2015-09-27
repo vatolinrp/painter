@@ -5,13 +5,11 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Oval extends Rectangle
+public class Ellipse extends Polygon
 {
-
-    public Oval(Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList)
+    public Ellipse(Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList)
     {
         super(firstPoint, lineColor, fillColor, pointsList);
-
     }
 
     public void paint(Graphics2D g)
@@ -23,7 +21,6 @@ public class Oval extends Rectangle
         g.setColor(getLineColor());
         g.drawOval(getPointsList()[0].x, getPointsList()[0].y, Math.abs(getPointsList()[1].x - getPointsList()[0].x),
                 Math.abs(getPointsList()[1].y - getPointsList()[0].y));
-
     }
 
 }

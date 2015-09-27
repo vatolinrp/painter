@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Beam extends Segment
+public class Ray extends Segment
 {
 
     public final int maxValue = 601;
     public final int minValue = 0;
 
-    public Beam(Point firstPoint, Color lineColor, Point secondPoint)
+    public Ray(Point firstPoint, Color lineColor, Point secondPoint)
     {
         super(firstPoint, lineColor, secondPoint);
     }

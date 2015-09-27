@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Line extends Beam
+public class Line extends Ray
 {
 
     public Line(Point firstPoint, Color lineColor, Point secondPoint)

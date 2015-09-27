@@ -4,15 +4,13 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Polygon;
 
-public class Rhombus extends Rectangle
+public class Rhombus extends Polygon
 {
 
     public Rhombus(Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList)
     {
         super(firstPoint, lineColor, fillColor, pointsList);
-
     }
 
     public Point[] calculationVertex()
@@ -38,7 +36,7 @@ public class Rhombus extends Rectangle
 
     public void paint(Graphics2D g)
     {
-        Polygon p = new Polygon();
+        java.awt.Polygon p = new java.awt.Polygon();
         for (Point elem : calculationVertex())
         {
             p.addPoint(elem.x, elem.y);
@@ -48,7 +46,6 @@ public class Rhombus extends Rectangle
         g.drawPolygon(p);
         g.setColor(getFillColor());
         g.fillPolygon(p);
-
     }
 
 }

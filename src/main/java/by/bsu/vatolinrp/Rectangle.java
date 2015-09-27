@@ -5,12 +5,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Rectangle extends Poligon
+public class Rectangle extends Polygon
 {
-
-    private final int numPoints = 2;
-
-    public Rectangle(Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList)
+	public Rectangle(Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList)
     {
         super(firstPoint, lineColor, fillColor, pointsList);
 
