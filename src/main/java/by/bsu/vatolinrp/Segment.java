@@ -13,9 +13,11 @@ public class Segment extends Figure1D
         super(firstPoint, lineColor, secondPoint);
     }
 
-    public void paint(Graphics2D g)
+    public void draw(Graphics2D g)
     {
-        drawLine(g);
+        g.setStroke(new BasicStroke(3));
+        g.setColor(getLineColor());
+        g.drawLine(getFirstPoint().x, getFirstPoint().y, getSecondPoint().x, getSecondPoint().y);
     }
 
     public void move(Point point)
@@ -25,13 +27,6 @@ public class Segment extends Figure1D
         setSecondPoint(new Point(getSecondPoint().x - p.x + getFirstPoint().x, getSecondPoint().y - p.y
                 + getFirstPoint().y));
 
-    }
-
-    public void drawLine(Graphics2D g)
-    {
-        g.setStroke(new BasicStroke(3));
-        g.setColor(getLineColor());
-        g.drawLine(getFirstPoint().x, getFirstPoint().y, getSecondPoint().x, getSecondPoint().y);
     }
 
 }

@@ -426,7 +426,7 @@ class ShapePanel extends JPanel
 
         for (int i = 0; i < AL.size(); ++i)
         {
-            AL.get(i).paint(g2);
+            AL.get(i).draw(g2);
         }
 
     }

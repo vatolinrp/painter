@@ -15,7 +15,7 @@ public abstract class Figure1D extends Figure
 
     }
 
-    public Point[] getLocation()
+    public Point[] location()
     {
         final int pointNum = 2;
         Point[] points = new Point[pointNum];

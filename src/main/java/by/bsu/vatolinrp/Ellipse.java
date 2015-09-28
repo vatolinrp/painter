@@ -12,7 +12,7 @@ public class Ellipse extends Polygon
         super(firstPoint, lineColor, fillColor, pointsList);
     }
 
-    public void paint(Graphics2D g)
+    public void draw(Graphics2D g)
     {
         g.setStroke(new BasicStroke(3));
         g.setColor(getFillColor());

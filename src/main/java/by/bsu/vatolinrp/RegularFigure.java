@@ -25,8 +25,7 @@ public class RegularFigure extends Figure2D
 
     }
 
-    @Override
-    public void paint(Graphics2D g)
+    public void draw(Graphics2D g)
     {
         switch(numberOfSides)
         {
@@ -70,7 +69,7 @@ public class RegularFigure extends Figure2D
 
 
 
-    public Point[] getLocation()
+    public Point[] location()
     {
         Point[] points = new Point[2];
         points[0] = getFirstPoint();

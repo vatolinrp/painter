@@ -27,7 +27,7 @@ public class Polygon extends Figure2D
         this.pointsList = pointsList;
     }
 
-    public Point[] getLocation()
+    public Point[] location()
     {
         return pointsList;
     }
@@ -44,10 +44,10 @@ public class Polygon extends Figure2D
 
     }
 
-    public void paint(Graphics2D g)
+    public void draw(Graphics2D g)
     {
         java.awt.Polygon p = new java.awt.Polygon();
-        for (Point elem : getLocation())
+        for (Point elem : location())
         {
             p.addPoint(elem.x, elem.y);
         }

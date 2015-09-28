@@ -13,7 +13,7 @@ public class Rectangle extends Polygon
 
     }
 
-    public void paint(Graphics2D g)
+    public void draw(Graphics2D g)
     {
         g.setStroke(new BasicStroke(3));
         g.setColor(getFillColor());

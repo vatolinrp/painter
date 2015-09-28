@@ -15,10 +15,10 @@ public class Ray extends Segment
         super(firstPoint, lineColor, secondPoint);
     }
 
-    public void paint(Graphics2D g)
+    public void draw(Graphics2D g)
     {
         pointCalculation();
-        super.drawLine(g);
+        super.draw(g);
     }
 
     public void pointCalculation()

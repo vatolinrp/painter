@@ -17,7 +17,7 @@ public abstract class Figure
 
     }
 
-    public Point[] getLocation()
+    public Point[] location()
     {
         final int pointNum = 1;
         Point[] points = new Point[pointNum];
@@ -35,8 +35,6 @@ public abstract class Figure
         this.firstPoint = firstPoint;
     }
 
-    public abstract void move(Point point);
-
     public Color getLineColor()
     {
         return lineColor;
@@ -47,6 +45,8 @@ public abstract class Figure
         this.lineColor = lineColor;
     }
 
-    public abstract void paint(Graphics2D g);
+    public abstract void draw(Graphics2D g);
+
+    public abstract void move(Point point);
 
 }
