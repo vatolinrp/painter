@@ -21,7 +21,7 @@ public class Ray extends Segment
         super.draw(g);
     }
 
-    public void pointCalculation()
+    private void pointCalculation()
     {
         int value = 0;
         value = checkDirection();
@@ -42,7 +42,7 @@ public class Ray extends Segment
         }
     }
 
-    public int lineEquation(int x)
+    protected int lineEquation(int x)
     {
         if (getFirstPoint().x != getSecondPoint().x)
         {

@@ -31,6 +31,8 @@ public class MainFrame extends JFrame
     private JMenuItem regular;
     private JMenuItem rect;
     private JMenuItem rhomb;
+    private JMenuItem parallelogram;
+    private JMenuItem isoscelesTriangle;
     private JMenuItem ellipse;
     private JMenuItem circle;
 
@@ -108,6 +110,8 @@ public class MainFrame extends JFrame
         PaintMenu2D.add(regular);
         PaintMenu2D.add(rect);
         PaintMenu2D.add(rhomb);
+        PaintMenu1D.add(parallelogram);
+        PaintMenu2D.add(isoscelesTriangle);
         PaintMenu2D.add(ellipse);
         PaintMenu2D.add(circle);
 
@@ -135,6 +139,8 @@ public class MainFrame extends JFrame
         regular.addActionListener(lDemoAction);
         rect.addActionListener(lDemoAction);
         rhomb.addActionListener(lDemoAction);
+        parallelogram.addActionListener(lDemoAction);
+        isoscelesTriangle.addActionListener(lDemoAction);
         ellipse.addActionListener(lDemoAction);
         circle.addActionListener(lDemoAction);
 
@@ -160,11 +166,13 @@ public class MainFrame extends JFrame
         regular = new JMenuItem("Regular Figure");
         rect = new JMenuItem("Rectangle");
         rhomb = new JMenuItem("Rhombus");
+        parallelogram = new JMenuItem("Parallelogram");
         ellipse = new JMenuItem("Ellipse");
         circle = new JMenuItem("Circle");
 
         square = new JMenuItem("4 sides");
         triangle = new JMenuItem("3 sides");
+        isoscelesTriangle = new JMenuItem("Triangle with equal sides");
 
     }
 
@@ -269,11 +277,31 @@ public class MainFrame extends JFrame
                     list.add(c);
                 }
             }
+            if (event.getSource() == isoscelesTriangle)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new IsoscelesTriangle(points.get(0), lineColor, fillColor,
+                            points.toArray(new Point[points.size()]));
+                    current = c;
+                    list.add(c);
+                }
+            }
             if (event.getSource() == rhomb)
             {
                 if(validateAction(2))
                 {
                     Figure c = new Rhombus(points.get(0), lineColor, fillColor,
+                            points.toArray(new Point[points.size()]));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == parallelogram)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Parallelogram(points.get(0), lineColor, fillColor,
                             points.toArray(new Point[points.size()]));
                     current = c;
                     list.add(c);

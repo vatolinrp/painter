@@ -13,7 +13,7 @@ public class Rhombus extends Polygon
         super(firstPoint, lineColor, fillColor, pointsList);
     }
 
-    private Point[] calculationVertex()
+    private Point[] pointCalculation()
     {
         Point[] points = new Point[4];
         Point point1 = new Point(location()[0].x, location()[0].y + (location()[1].y - location()[0].y) / 2);
@@ -37,7 +37,7 @@ public class Rhombus extends Polygon
     public void draw(Graphics2D g)
     {
         java.awt.Polygon p = new java.awt.Polygon();
-        for (Point elem : calculationVertex())
+        for (Point elem : pointCalculation())
         {
             p.addPoint(elem.x, elem.y);
         }

@@ -42,7 +42,7 @@ public class Line extends Ray
         }
     }
 
-    public void pointCalculation()
+    private void pointCalculation()
     {
         int value = 0;
         value = checkDirection1();
