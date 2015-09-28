@@ -124,13 +124,11 @@ public class RegularFigure extends Figure2D
         {
             length = y;
         }
-        points[0] = new Point(getCenter().x, getCenter().y - length);
-        int temp = getCenter().y + (length) / 2;
+        int dist = (int)Math.sqrt(2*length*length);
 
-        int temp1 = (int) ((length) * 3 / Math.sqrt(3.0));
-        points[1] = new Point(getCenter().x - temp1 / 2, temp);
-
-        points[2] = new Point(getCenter().x + temp1 / 2, temp);
+        points[0] = new Point(getCenter().x-dist, getCenter().y + length);
+        points[1] = new Point(getCenter().x+dist, getCenter().y + length);
+        points[2] = new Point(getCenter().x, getCenter().y - length);
 
         return points;
     }
