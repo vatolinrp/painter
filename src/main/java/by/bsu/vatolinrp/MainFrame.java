@@ -32,6 +32,7 @@ public class MainFrame extends JFrame
     private JMenuItem rect;
     private JMenuItem rhomb;
     private JMenuItem ellipse;
+    private JMenuItem circle;
 
     private JMenuItem square;
     private JMenuItem triangle;
@@ -108,6 +109,7 @@ public class MainFrame extends JFrame
         PaintMenu2D.add(rect);
         PaintMenu2D.add(rhomb);
         PaintMenu2D.add(ellipse);
+        PaintMenu2D.add(circle);
 
         regular.add(triangle);
         regular.add(square);
@@ -134,6 +136,7 @@ public class MainFrame extends JFrame
         rect.addActionListener(lDemoAction);
         rhomb.addActionListener(lDemoAction);
         ellipse.addActionListener(lDemoAction);
+        circle.addActionListener(lDemoAction);
 
         triangle.addActionListener(lDemoAction);
         square.addActionListener(lDemoAction);
@@ -158,6 +161,7 @@ public class MainFrame extends JFrame
         rect = new JMenuItem("Rectangle");
         rhomb = new JMenuItem("Rhombus");
         ellipse = new JMenuItem("Ellipse");
+        circle = new JMenuItem("Circle");
 
         square = new JMenuItem("4 sides");
         triangle = new JMenuItem("3 sides");
@@ -240,6 +244,16 @@ public class MainFrame extends JFrame
                 if(validateAction(2))
                 {
                     Figure c = new Ellipse(points.get(0), lineColor, fillColor,
+                            points.toArray(new Point[points.size()]));
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == circle)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new Circle(points.get(0), lineColor, fillColor,
                             points.toArray(new Point[points.size()]));
                     current = c;
                     list.add(c);
