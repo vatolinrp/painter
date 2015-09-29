@@ -3,8 +3,6 @@ package by.bsu.vatolinrp;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ public class MainFrame extends JFrame
     private JMenuItem line;
 
     private JMenuItem poligon;
-    private JMenuItem regular;
     private JMenuItem rect;
     private JMenuItem rhomb;
     private JMenuItem parallelogram;
@@ -36,54 +33,27 @@ public class MainFrame extends JFrame
     private JMenuItem ellipse;
     private JMenuItem circle;
 
-    private JMenuItem square;
-    private JMenuItem triangle;
+    private JMenuItem regular;
 
     private JMenuItem Clear;
-    private JFileChooser fc;
 
     private Color lineColor = Color.BLUE;
     private Color fillColor = Color.GREEN;
 
+    private JTextField textField;
+
     ShapePanel tp;
-    static int q = 0;
 
     MainFrame()
     {
         super();
-
-        createMenu();
-
-        addFiguresPanel();
-
-        setSize(600, 500);
-        setResizable(false);
-    }
-
-    private void addFiguresPanel()
-    {
-        Container content = getContentPane();
-
-        tp = new ShapePanel(list);
-        content.add(tp);
-    }
-
-    private void createMenu()
-    {
-
+        setLayout(new GridLayout(1,2));
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        createMenuBar(menuBar);
-        addListeners();
-    }
-
-    private void createMenuBar(JMenuBar menuBar)
-    {
         JMenu fileMenu = new JMenu("File");
         JMenu EditMenu = new JMenu("Edit");
         JMenu PaintMenu1D = new JMenu("Paint1D");
         JMenu PaintMenu2D = new JMenu("Paint2D");
-        JMenu regular = new JMenu("RegularFigure");
 
         menuBar.add(fileMenu);
 
@@ -91,7 +61,28 @@ public class MainFrame extends JFrame
         menuBar.add(PaintMenu1D);
         menuBar.add(PaintMenu2D);
 
-        createItems();
+        textField = new JTextField(5);
+        exitItem = new JMenuItem("Exit");
+
+        move = new JMenuItem("Move Figure");
+        lineColorItem = new JMenuItem("Color of borders");
+        fillColorItem = new JMenuItem("Color of fill");
+        Clear = new JMenuItem("Clear All");
+
+        segment = new JMenuItem("Segment");
+        ray = new JMenuItem("Ray");
+        line = new JMenuItem("Line");
+
+        poligon = new JMenuItem("Polygon");
+        rect = new JMenuItem("Rectangle");
+        rhomb = new JMenuItem("Rhombus");
+        parallelogram = new JMenuItem("Parallelogram");
+        ellipse = new JMenuItem("Ellipse");
+        circle = new JMenuItem("Circle");
+
+        regular = new JMenuItem("regular");
+        isoscelesTriangle = new JMenuItem("Triangle with equal sides");
+
 
         fileMenu.add(exitItem);
 
@@ -105,22 +96,13 @@ public class MainFrame extends JFrame
         PaintMenu1D.add(line);
 
         PaintMenu2D.add(poligon);
-        PaintMenu2D.add(regular);
         PaintMenu2D.add(rect);
         PaintMenu2D.add(rhomb);
-        PaintMenu1D.add(parallelogram);
+        PaintMenu2D.add(parallelogram);
         PaintMenu2D.add(isoscelesTriangle);
         PaintMenu2D.add(ellipse);
         PaintMenu2D.add(circle);
-
-        regular.add(triangle);
-        regular.add(square);
-
-    }
-
-    private void addListeners()
-    {
-
+        PaintMenu2D.add(regular);
         DemoAction lDemoAction = new DemoAction();
         exitItem.addActionListener(lDemoAction);
 
@@ -134,7 +116,6 @@ public class MainFrame extends JFrame
         line.addActionListener(lDemoAction);
 
         poligon.addActionListener(lDemoAction);
-        regular.addActionListener(lDemoAction);
         rect.addActionListener(lDemoAction);
         rhomb.addActionListener(lDemoAction);
         parallelogram.addActionListener(lDemoAction);
@@ -142,36 +123,17 @@ public class MainFrame extends JFrame
         ellipse.addActionListener(lDemoAction);
         circle.addActionListener(lDemoAction);
 
-        triangle.addActionListener(lDemoAction);
-        square.addActionListener(lDemoAction);
+        regular.addActionListener(lDemoAction);
 
-    }
+        tp = new ShapePanel(list);
 
-    private void createItems()
-    {
-        exitItem = new JMenuItem("Exit");
+        add(tp);
+        add(textField);
+        //add(textField, BorderLayout.PAGE_END);
 
-        move = new JMenuItem("Move Figure");
-        lineColorItem = new JMenuItem("Color of borders");
-        fillColorItem = new JMenuItem("Color of fill");
-        Clear = new JMenuItem("Clear All");
 
-        segment = new JMenuItem("Segment");
-        ray = new JMenuItem("Ray");
-        line = new JMenuItem("Line");
-
-        poligon = new JMenuItem("Polygon");
-        regular = new JMenuItem("Regular Figure");
-        rect = new JMenuItem("Rectangle");
-        rhomb = new JMenuItem("Rhombus");
-        parallelogram = new JMenuItem("Parallelogram");
-        ellipse = new JMenuItem("Ellipse");
-        circle = new JMenuItem("Circle");
-
-        square = new JMenuItem("4 sides");
-        triangle = new JMenuItem("3 sides");
-        isoscelesTriangle = new JMenuItem("Triangle with equal sides");
-
+        setSize(600, 500);
+        setResizable(false);
     }
 
     public static void main(String[] args)
@@ -305,25 +267,16 @@ public class MainFrame extends JFrame
                     list.add(c);
                 }
             }
-            if (event.getSource() == square)
+            if (event.getSource() == regular)
             {
                 if(validateAction(2))
                 {
-                    Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),4);
+                    int num = new Integer(textField.getText());
+                    Figure c = new RegularFigure(points.get(0), lineColor, fillColor, points.toArray(new Point[points.size()]),num);
                     current = c;
                     list.add(c);
                 }
             }
-            if (event.getSource() == triangle)
-            {
-                if(validateAction(2))
-                {
-                    Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),3);
-                    current = c;
-                    list.add(c);
-                }
-            }
-
             if (event.getSource() == Clear)
             {
                 ClearItem_Action();
@@ -349,6 +302,11 @@ public class MainFrame extends JFrame
     {
         this.repaint();
         points.clear();
+    }
+
+    private JFrame getThis()
+    {
+        return this;
     }
 
     private boolean validateAction(int numberNeeded)

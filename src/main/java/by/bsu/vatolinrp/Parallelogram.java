@@ -15,19 +15,6 @@ public class Parallelogram extends Polygon
     public void draw(Graphics2D g)
     {
         java.awt.Polygon p = new java.awt.Polygon();
-        for (Point elem : pointCalculation())
-        {
-            p.addPoint(elem.x, elem.y);
-        }
-        g.setStroke(new BasicStroke(3));
-        g.setColor(getLineColor());
-        g.drawPolygon(p);
-        g.setColor(getFillColor());
-        g.fillPolygon(p);
-    }
-
-    private Point[] pointCalculation()
-    {
         Point[] points = new Point[4];
         Point point1 = new Point(location()[0].x, location()[0].y);
 
@@ -42,8 +29,14 @@ public class Parallelogram extends Polygon
         Point point4 = new Point(3*Math.abs(location()[0].x -location()[1].x)/4+location()[0].x, location()[0].y);
 
         points[3] = point4;
-
-        return points;
-
+        for (Point elem : points)
+        {
+            p.addPoint(elem.x, elem.y);
+        }
+        g.setStroke(new BasicStroke(3));
+        g.setColor(getLineColor());
+        g.drawPolygon(p);
+        g.setColor(getFillColor());
+        g.fillPolygon(p);
     }
 }

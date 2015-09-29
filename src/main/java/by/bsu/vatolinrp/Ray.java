@@ -13,10 +13,10 @@ public class Ray extends Segment
 
     public void draw(Graphics2D g)
     {
-        int x1 = getFirstPoint().x;
-        int x2 = getSecondPoint().x;
-        int y1 = getFirstPoint().y;
-        int y2 = getSecondPoint().y;
+        int x1 = firstPoint.x;
+        int x2 = secondPoint.x;
+        int y1 = firstPoint.y;
+        int y2 = secondPoint.y;
 
         int res_x1;
         int res_x2;

@@ -14,8 +14,8 @@ public class Line extends Ray
 
     public void draw(Graphics2D g)
     {
-        Point point1 = getFirstPoint();
-        Point point2 = getSecondPoint();
+        Point point1 = firstPoint;
+        Point point2 = secondPoint;
         super.draw(g);
         setFirstPoint(point2);
         setSecondPoint(point1);

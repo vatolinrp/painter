@@ -13,8 +13,9 @@ public class Rhombus extends Parallelogram
         super(firstPoint, lineColor, fillColor, pointsList);
     }
 
-    private Point[] pointCalculation()
+    public void draw(Graphics2D g)
     {
+        java.awt.Polygon p = new java.awt.Polygon();
         Point[] points = new Point[4];
         Point point1 = new Point(location()[0].x, location()[0].y + (location()[1].y - location()[0].y) / 2);
 
@@ -29,15 +30,7 @@ public class Rhombus extends Parallelogram
         Point point4 = new Point(location()[0].x + (location()[1].x - location()[0].x) / 2, location()[1].y);
 
         points[3] = point4;
-
-        return points;
-
-    }
-
-    public void draw(Graphics2D g)
-    {
-        java.awt.Polygon p = new java.awt.Polygon();
-        for (Point elem : pointCalculation())
+        for (Point elem : points)
         {
             p.addPoint(elem.x, elem.y);
         }

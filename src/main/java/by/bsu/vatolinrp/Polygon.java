@@ -8,11 +8,13 @@ import java.awt.Point;
 public class Polygon extends Figure2D
 {
 
-    private Point[] pointsList;
+    protected Point[] pointsList;
 
     public Polygon(Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList)
     {
-        super(firstPoint, lineColor, fillColor);
+        this.firstPoint = firstPoint;
+        this.lineColor = lineColor;
+        this.fillColor = fillColor;
         this.pointsList = pointsList;
 
     }

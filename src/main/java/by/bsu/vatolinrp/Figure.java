@@ -7,15 +7,8 @@ import java.awt.Point;
 public abstract class Figure
 {
 
-    private Point firstPoint;
-    private Color lineColor;
-
-    public Figure(Point firstPoint, Color lineColor)
-    {
-        this.firstPoint = firstPoint;
-        this.lineColor = lineColor;
-
-    }
+    protected Point firstPoint;
+    protected Color lineColor;
 
     public Point[] location()
     {

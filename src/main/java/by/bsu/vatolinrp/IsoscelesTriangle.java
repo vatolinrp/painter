@@ -12,8 +12,9 @@ public class IsoscelesTriangle extends Polygon
         super(firstPoint, lineColor, fillColor, pointsList);
     }
 
-    private Point[] pointCalculation()
+    public void draw(Graphics2D g)
     {
+        java.awt.Polygon p = new java.awt.Polygon();
         Point[] points = new Point[3];
         int length;
         int x = Math.abs(location()[0].x - location()[1].x);
@@ -31,15 +32,7 @@ public class IsoscelesTriangle extends Polygon
         points[0] = new Point(location()[0].x-dist, location()[0].y + length);
         points[1] = new Point(location()[0].x+dist, location()[0].y + length);
         points[2] = new Point(location()[0].x, location()[0].y - length*2);
-
-        return points;
-
-    }
-
-    public void draw(Graphics2D g)
-    {
-        java.awt.Polygon p = new java.awt.Polygon();
-        for (Point elem : pointCalculation())
+        for (Point elem : points)
         {
             p.addPoint(elem.x, elem.y);
         }
