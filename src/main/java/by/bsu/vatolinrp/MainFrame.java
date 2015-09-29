@@ -56,8 +56,6 @@ public class MainFrame extends JFrame
 
         addFiguresPanel();
 
-        addKeyListener(new KeyHandler());
-
         setSize(600, 500);
         setResizable(false);
     }
@@ -307,12 +305,29 @@ public class MainFrame extends JFrame
                     list.add(c);
                 }
             }
-            else if (event.getSource() == square)
-                squareItem_Action(event);
-            else if (event.getSource() == triangle)
-                triangleItem_Action(event);
-            else if (event.getSource() == Clear)
-                ClearItem_Action(event);
+            if (event.getSource() == square)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),4);
+                    current = c;
+                    list.add(c);
+                }
+            }
+            if (event.getSource() == triangle)
+            {
+                if(validateAction(2))
+                {
+                    Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),3);
+                    current = c;
+                    list.add(c);
+                }
+            }
+
+            if (event.getSource() == Clear)
+            {
+                ClearItem_Action();
+            }
 
             repaintAndClear(points);
 
@@ -328,14 +343,6 @@ public class MainFrame extends JFrame
     private void clearLists()
     {
         list.clear();
-    }
-
-    private int prepareFileChooserForLoad()
-    {
-        fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int returnVal = fc.showSaveDialog(this);
-        return returnVal;
     }
 
     private void repaintAndClear(List<Point> points)
@@ -357,81 +364,12 @@ public class MainFrame extends JFrame
         }
     }
 
-    private void squareItem_Action(ActionEvent event)
-    {
-
-        List<Point> points = tp.getPoints();
-        if (points.size() > 0)
-        {
-            Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),4);
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "place one point, please");
-        }
-
-    }
-
-    private void triangleItem_Action(ActionEvent event)
-    {
-
-        List<Point> points = tp.getPoints();
-        if (points.size() > 0)
-        {
-            Figure c = new RegularFigure(points.get(1), lineColor, fillColor, points.get(0),3);
-            current = c;
-            list.add(c);
-            this.repaint();
-            points.clear();
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "place one point, please");
-        }
-
-    }
-
-    private void ClearItem_Action(ActionEvent event)
+    private void ClearItem_Action()
     {
         clearLists();
         this.repaint();
 
     }
-
-    class KeyHandler implements KeyListener
-    {
-
-        public void keyPressed(KeyEvent event)
-        {
-            int keyCode = event.getKeyCode();
-            if (keyCode == KeyEvent.VK_ALT)
-            {
-                if (q == list.size())
-                {
-                    q = 0;
-                }
-                current = list.get(q);
-                q++;
-            }
-
-        }
-
-        public void keyReleased(KeyEvent evevnt)
-        {
-
-        }
-
-        public void keyTyped(KeyEvent evevnt)
-        {
-
-        }
-
-    }
-
 }
 
 class ShapePanel extends JPanel
@@ -449,11 +387,8 @@ class ShapePanel extends JPanel
             {
                 points.add(event.getPoint());
                 repaint();
-
             }
-
         });
-
     }
 
     protected void paintComponent(Graphics g)
