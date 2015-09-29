@@ -14,45 +14,12 @@ public class Line extends Ray
 
     public void draw(Graphics2D g)
     {
-        pointCalculation();
+        Point point1 = getFirstPoint();
+        Point point2 = getSecondPoint();
         super.draw(g);
-    }
-
-    private int checkDirection1()
-    {
-        if (getFirstPoint().x <= getSecondPoint().x)
-        {
-            return maxValue;
-        }
-        else
-        {
-            return minValue;
-        }
-    }
-
-    private int checkDirection2()
-    {
-        if (getFirstPoint().x <= getSecondPoint().x)
-        {
-            return minValue;
-        }
-        else
-        {
-            return maxValue;
-        }
-    }
-
-    private void pointCalculation()
-    {
-        int value = 0;
-        value = checkDirection1();
-        Point firstPoint = new Point(value, lineEquation(value));
-        value = checkDirection2();
-        Point secondPoint = new Point(value, lineEquation(value));
-        setFirstPoint(firstPoint);
-
-        setSecondPoint(secondPoint);
-
+        setFirstPoint(point2);
+        setSecondPoint(point1);
+        super.draw(g);
     }
 
 }

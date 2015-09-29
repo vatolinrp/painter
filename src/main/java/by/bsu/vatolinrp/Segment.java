@@ -24,9 +24,7 @@ public class Segment extends Figure1D
     {
         Point p = getFirstPoint();
         setFirstPoint(point);
-        setSecondPoint(new Point(getSecondPoint().x - p.x + getFirstPoint().x, getSecondPoint().y - p.y
-                + getFirstPoint().y));
-
+        setSecondPoint(new Point(getSecondPoint().x - p.x + getFirstPoint().x, getSecondPoint().y - p.y + getFirstPoint().y));
     }
 
 }

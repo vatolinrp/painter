@@ -6,10 +6,6 @@ import java.awt.Point;
 
 public class Ray extends Segment
 {
-
-    public final int maxValue = 601;
-    public final int minValue = 0;
-
     public Ray(Point firstPoint, Color lineColor, Point secondPoint)
     {
         super(firstPoint, lineColor, secondPoint);
@@ -17,43 +13,59 @@ public class Ray extends Segment
 
     public void draw(Graphics2D g)
     {
-        pointCalculation();
+        int x1 = getFirstPoint().x;
+        int x2 = getSecondPoint().x;
+        int y1 = getFirstPoint().y;
+        int y2 = getSecondPoint().y;
+
+        int res_x1;
+        int res_x2;
+        int res_y1;
+        int res_y2;
+
+        if (x1 <= x2)
+        {
+            res_x1 = x1;
+            res_y1 = y1;
+            res_x2 = 601;
+            if((x1-x2)!=0)
+            {
+                res_y2 = (x1 * y2 - x2 * y1 + res_x2
+                        * (y1 - y2))
+                        / (x1 - x2);
+            }
+            else
+            {
+                res_y2 = (x1 * y2 - x2 * y1 + res_x2
+                        * (y1 - y2));
+            }
+            Point point1 = new Point(res_x1, res_y1);
+            Point point2 = new Point(res_x2, res_y2);
+            setFirstPoint(point1);
+            setSecondPoint(point2);
+        }
+        else
+        {
+            res_x1 = x1;
+            res_y1 = y1;
+            res_x2 = 0;
+            if((x1-x2)!=0)
+            {
+                res_y2 = (x1 * y2 - x2 * y1 + res_x2
+                        * (y1 - y2))
+                        / (x1 - x2);
+            }
+            else
+            {
+                res_y2 = (x1 * y2 - x2 * y1 + res_x2
+                        * (y1 - y2));
+            }
+            Point point1 = new Point(res_x1, res_y1);
+            Point point2 = new Point(res_x2, res_y2);
+            setFirstPoint(point1);
+            setSecondPoint(point2);
+        }
         super.draw(g);
-    }
-
-    private void pointCalculation()
-    {
-        int value = 0;
-        value = checkDirection();
-        Point point = new Point(value, lineEquation(value));
-        setSecondPoint(point);
-
-    }
-
-    private int checkDirection()
-    {
-        if (getFirstPoint().x <= getSecondPoint().x)
-        {
-            return maxValue;
-        }
-        else
-        {
-            return minValue;
-        }
-    }
-
-    protected int lineEquation(int x)
-    {
-        if (getFirstPoint().x != getSecondPoint().x)
-        {
-            return (getFirstPoint().x * getSecondPoint().y - getSecondPoint().x * getFirstPoint().y + x
-                    * (getFirstPoint().y - getSecondPoint().y))
-                    / (getFirstPoint().x - getSecondPoint().x);
-        }
-        else
-        {
-            return checkDirection();
-        }
     }
 
 }
