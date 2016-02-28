@@ -1,2 +1,2 @@
-# tp_task_1
+# painter
 simple swing application. Allows users to draw objects.
