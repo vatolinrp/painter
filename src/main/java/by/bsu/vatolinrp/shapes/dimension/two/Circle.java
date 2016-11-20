@@ -7,8 +7,7 @@ import java.awt.Point;
 
 public class Circle extends Ellipse
 {
-  public Circle( Point firstPoint, Color lineColor, Color fillColor,
-    Point[] pointsList )
+  public Circle( Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList )
   {
     super( firstPoint, lineColor, fillColor, pointsList );
   }

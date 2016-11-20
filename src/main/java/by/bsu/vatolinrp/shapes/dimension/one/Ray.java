@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Ray
-  extends Segment
+public class Ray extends Segment
 {
   public Ray( Point firstPoint, Color lineColor, Point secondPoint )
   {

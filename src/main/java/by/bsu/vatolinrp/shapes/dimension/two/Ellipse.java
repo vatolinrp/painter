@@ -17,13 +17,11 @@ public class Ellipse extends Polygon
     g.setStroke( new BasicStroke( 3 ) );
     g.setColor( getFillColor() );
     g.fillOval(
-      getPointsList()[0].x, getPointsList()[0].y,
-      Math.abs( getPointsList()[1].x - getPointsList()[0].x ),
+      getPointsList()[0].x, getPointsList()[0].y, Math.abs( getPointsList()[1].x - getPointsList()[0].x ),
       Math.abs( getPointsList()[1].y - getPointsList()[0].y ) );
     g.setColor( getLineColor() );
     g.drawOval(
-      getPointsList()[0].x, getPointsList()[0].y,
-      Math.abs( getPointsList()[1].x - getPointsList()[0].x ),
+      getPointsList()[0].x, getPointsList()[0].y, Math.abs( getPointsList()[1].x - getPointsList()[0].x ),
       Math.abs( getPointsList()[1].y - getPointsList()[0].y ) );
   }
 

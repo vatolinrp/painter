@@ -1,7 +1,5 @@
 package by.bsu.vatolinrp.shapes.dimension.two;
 
-import by.bsu.vatolinrp.shapes.dimension.two.Polygon;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -9,8 +7,7 @@ import java.awt.Point;
 
 public class IsoscelesTriangle extends Polygon
 {
-  public IsoscelesTriangle( Point firstPoint, Color lineColor, Color fillColor,
-    Point[] pointsList )
+  public IsoscelesTriangle( Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList )
   {
     super( firstPoint, lineColor, fillColor, pointsList );
   }

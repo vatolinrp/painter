@@ -1,17 +1,13 @@
 package by.bsu.vatolinrp.shapes.dimension.two;
 
-import by.bsu.vatolinrp.shapes.dimension.two.Polygon;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Parallelogram
-  extends Polygon
+public class Parallelogram extends Polygon
 {
-  public Parallelogram( Point firstPoint, Color lineColor, Color fillColor,
-    Point[] pointsList )
+  public Parallelogram( Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList )
   {
     super( firstPoint, lineColor, fillColor, pointsList );
   }
@@ -23,18 +19,14 @@ public class Parallelogram
     Point point1 = new Point( location()[0].x, location()[0].y );
 
     points[0] = point1;
-    Point point2 = new Point(
-      Math.abs( location()[0].x - location()[1].x ) / 4 + location()[0].x,
-      location()[1].y );
+    Point point2 = new Point( Math.abs( location()[0].x - location()[1].x ) / 4 + location()[0].x, location()[1].y );
 
     points[1] = point2;
 
     Point point3 = new Point( location()[1].x, location()[1].y );
     points[2] = point3;
 
-    Point point4 = new Point(
-      3 * Math.abs( location()[0].x - location()[1].x ) / 4 + location()[0].x,
-      location()[0].y );
+    Point point4 = new Point( 3 * Math.abs( location()[0].x - location()[1].x ) / 4 + location()[0].x, location()[0].y );
 
     points[3] = point4;
     for( Point elem : points ) {

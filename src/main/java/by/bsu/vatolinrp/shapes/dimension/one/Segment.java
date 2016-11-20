@@ -5,8 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Segment
-  extends Figure1D
+public class Segment extends Figure1D
 {
 
   public Segment( Point firstPoint, Color lineColor, Point secondPoint )
@@ -27,9 +26,7 @@ public class Segment
   {
     Point p = getFirstPoint();
     setFirstPoint( point );
-    setSecondPoint(
-      new Point(
-        secondPoint.x - p.x + firstPoint.x, secondPoint.y - p.y + firstPoint.y ) );
+    setSecondPoint( new Point( secondPoint.x - p.x + firstPoint.x, secondPoint.y - p.y + firstPoint.y ) );
   }
 
 }

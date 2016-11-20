@@ -5,8 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Rhombus
-  extends Parallelogram
+public class Rhombus extends Parallelogram
 {
 
   public Rhombus( Point firstPoint, Color lineColor, Color fillColor,

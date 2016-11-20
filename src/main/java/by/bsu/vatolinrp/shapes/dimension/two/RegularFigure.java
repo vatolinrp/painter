@@ -1,12 +1,12 @@
 package by.bsu.vatolinrp.shapes.dimension.two;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Point;
 
-
-public class RegularFigure
-  extends by.bsu.vatolinrp.shapes.dimension.two.Polygon
+public class RegularFigure extends Polygon
 {
-
   private int numberOfSides;
 
   public RegularFigure( Point firstPoint, Color lineColor, Color fillColor,

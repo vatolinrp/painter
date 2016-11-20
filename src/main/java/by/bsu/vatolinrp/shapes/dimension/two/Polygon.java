@@ -5,14 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Polygon
-  extends Figure2D
+public class Polygon extends Figure2D
 {
 
   protected Point[] pointsList;
 
-  public Polygon( Point firstPoint, Color lineColor, Color fillColor,
-    Point[] pointsList )
+  public Polygon( Point firstPoint, Color lineColor, Color fillColor, Point[] pointsList )
   {
     this.firstPoint = firstPoint;
     this.lineColor = lineColor;
@@ -42,9 +40,7 @@ public class Polygon
     Point p = pointsList[0];
     pointsList[0] = point;
     for( int i = 1; i < pointsList.length; i++ ) {
-      pointsList[i] = new Point(
-        pointsList[i].x - p.x + pointsList[0].x,
-        pointsList[i].y - p.y + pointsList[0].y );
+      pointsList[i] = new Point( pointsList[i].x - p.x + pointsList[0].x, pointsList[i].y - p.y + pointsList[0].y );
     }
 
   }

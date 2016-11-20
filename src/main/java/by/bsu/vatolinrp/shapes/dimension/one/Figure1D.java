@@ -4,8 +4,7 @@ import by.bsu.vatolinrp.shapes.dimension.Figure;
 
 import java.awt.Point;
 
-public abstract class Figure1D
-  extends Figure
+public abstract class Figure1D extends Figure
 {
 
   protected Point secondPoint;

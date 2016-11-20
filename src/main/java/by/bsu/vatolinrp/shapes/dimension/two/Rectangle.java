@@ -1,14 +1,11 @@
 package by.bsu.vatolinrp.shapes.dimension.two;
 
-import by.bsu.vatolinrp.shapes.dimension.two.Polygon;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Rectangle
-  extends Polygon
+public class Rectangle extends Polygon
 {
   public Rectangle( Point firstPoint, Color lineColor, Color fillColor,
     Point[] pointsList )

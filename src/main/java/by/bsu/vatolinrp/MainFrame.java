@@ -14,16 +14,21 @@ import by.bsu.vatolinrp.shapes.dimension.two.RegularFigure;
 import by.bsu.vatolinrp.shapes.dimension.two.Rhombus;
 import by.bsu.vatolinrp.util.PointValidator;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JTextField;
 
-public class MainFrame
-  extends JFrame
+public class MainFrame extends JFrame
 {
-
   private ArrayList<Figure> list = new ArrayList<Figure>();
   private Figure current;
 
@@ -131,15 +136,13 @@ public class MainFrame
     lineColorItem.addActionListener( new ActionListener() {
       public void actionPerformed( ActionEvent e )
       {
-        lineColor = JColorChooser
-          .showDialog( shapePanel, "Choose color", Color.green );
+        lineColor = JColorChooser.showDialog( shapePanel, "Choose color", Color.green );
       }
     } );
     fillColorItem.addActionListener( new ActionListener() {
       public void actionPerformed( ActionEvent e )
       {
-        fillColor = JColorChooser
-          .showDialog( shapePanel, "Choose color", Color.green );
+        fillColor = JColorChooser.showDialog( shapePanel, "Choose color", Color.green );
       }
     } );
     Clear.addActionListener( new ActionListener() {
@@ -154,9 +157,7 @@ public class MainFrame
       public void actionPerformed( ActionEvent e )
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
-          Figure c = new Segment(
-            shapePanel.getPoints().get( 0 ), lineColor,
-            shapePanel.getPoints().get( 1 ) );
+          Figure c = new Segment( shapePanel.getPoints().get( 0 ), lineColor, shapePanel.getPoints().get( 1 ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -168,9 +169,7 @@ public class MainFrame
       public void actionPerformed( ActionEvent e )
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
-          Figure c = new Ray(
-            shapePanel.getPoints().get( 0 ), lineColor,
-            shapePanel.getPoints().get( 1 ) );
+          Figure c = new Ray( shapePanel.getPoints().get( 0 ), lineColor, shapePanel.getPoints().get( 1 ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -182,9 +181,7 @@ public class MainFrame
       public void actionPerformed( ActionEvent e )
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
-          Figure c = new Line(
-            shapePanel.getPoints().get( 0 ), lineColor,
-            shapePanel.getPoints().get( 1 ) );
+          Figure c = new Line( shapePanel.getPoints().get( 0 ), lineColor, shapePanel.getPoints().get( 1 ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -198,8 +195,8 @@ public class MainFrame
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 3 ) ) {
           Figure c = new by.bsu.vatolinrp.shapes.dimension.two.Polygon(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ) );
+            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints().toArray(
+              new Point[shapePanel.getPoints().size()] ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -212,8 +209,8 @@ public class MainFrame
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
           Figure c = new by.bsu.vatolinrp.shapes.dimension.two.Rectangle(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ) );
+            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints().toArray(
+              new Point[shapePanel.getPoints().size()] ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -225,9 +222,8 @@ public class MainFrame
       public void actionPerformed( ActionEvent e )
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
-          Figure c = new Rhombus(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ) );
+          Figure c = new Rhombus( shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints()
+            .toArray( new Point[shapePanel.getPoints().size()] ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -239,9 +235,8 @@ public class MainFrame
       public void actionPerformed( ActionEvent e )
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
-          Figure c = new Parallelogram(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ) );
+          Figure c = new Parallelogram( shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints()
+            .toArray( new Point[shapePanel.getPoints().size()] ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -254,8 +249,8 @@ public class MainFrame
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
           Figure c = new IsoscelesTriangle(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ) );
+            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints().toArray(
+              new Point[shapePanel.getPoints().size()] ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -267,9 +262,8 @@ public class MainFrame
       public void actionPerformed( ActionEvent e )
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
-          Figure c = new Ellipse(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ) );
+          Figure c = new Ellipse( shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints()
+            .toArray( new Point[shapePanel.getPoints().size()] ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -281,9 +275,8 @@ public class MainFrame
       public void actionPerformed( ActionEvent e )
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
-          Figure c = new Circle(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ) );
+          Figure c = new Circle( shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints().toArray(
+            new Point[shapePanel.getPoints().size()] ) );
           current = c;
           list.add( c );
           shapePanel.repaint();
@@ -297,10 +290,8 @@ public class MainFrame
       {
         if ( PointValidator.isEnoughPoints( shapePanel, 2 ) ) {
           int num = new Integer( textField.getText() );
-          Figure c = new RegularFigure(
-            shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel
-              .getPoints().toArray( new Point[shapePanel.getPoints().size()] ),
-            num );
+          Figure c = new RegularFigure( shapePanel.getPoints().get( 0 ), lineColor, fillColor, shapePanel.getPoints()
+            .toArray( new Point[shapePanel.getPoints().size()] ), num );
           current = c;
           list.add( c );
         }
@@ -309,10 +300,8 @@ public class MainFrame
       }
     } );
 
-
     add( shapePanel );
     add( textField );
-
 
     setSize( 600, 500 );
     setResizable( false );
@@ -320,10 +309,8 @@ public class MainFrame
 
   public static void main( String[] args )
   {
-
     MainFrame mf = new MainFrame();
     mf.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
     mf.show();
-
   }
 }
